@@ -10,7 +10,7 @@ Vue.use(ElementUI);
 
 //2.引入axios
 import axios from 'axios';
-Vue.prototype.$http=axios;
+Vue.prototype.axios=axios;
 
 //3 引入lazyload
 import lazyload from "vue-lazyload"

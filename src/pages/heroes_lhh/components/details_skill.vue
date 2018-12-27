@@ -1,7 +1,7 @@
 <template>
   <div class="app_skill">
     <!-- first part -->
-    <img src="../../../../public/heroes/border_line.png" alt>
+    <img src="../../../../public/heroes_lhh/border_line.png" alt>
     <div class="first_part">
       <div class="div_item">
         <div v-for="(item,i) of 4" :key="i">
@@ -23,10 +23,10 @@
           <h3>终极技能</h3>
           <div class="div_img">
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
           </div>
         </div>
@@ -36,13 +36,13 @@
           <h3>终极技能</h3>
           <div class="div_img">
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
           </div>
         </div>
@@ -50,27 +50,27 @@
           <h3>终极技能</h3>
           <div class="div_img">
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
             <div class="div_img_img">
-              <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+              <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
             </div>
           </div>
         </div>
       </div>
     </div>
     <h2 class="sec_h2">初始技能</h2>
-    <img src="../../../../public/heroes/border_line.png" alt>
+    <img src="../../../../public/heroes_lhh/border_line.png" alt>
     <div class="sec_part">
       <div class="hero_video_box" v-for="(item,i) of 3" :key="i">
         <div class="skill_video_div">
-          <img class="skill_video_img" src="../../../../public/heroes/shadow-waltz.jpg" alt>
+          <img class="skill_video_img" src="../../../../public/heroes_lhh/shadow-waltz.jpg" alt>
         </div>
         <div class="skill_border">
-          <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+          <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
         </div>
         <div class="skill_border_dtl">
           <p>暗影华尔兹</p>
@@ -80,14 +80,14 @@
     </div>
     <!-- 终极技能部分 -->
     <h2 class="sec_h2">终极技能</h2>
-    <img src="../../../../public/heroes/border_line.png" alt>
+    <img src="../../../../public/heroes_lhh/border_line.png" alt>
     <div class="sec_part last_skill">
       <div class="hero_video_box" v-for="(item,i) of 3" :key="i">
         <div class="skill_video_div">
-          <img class="skill_video_img" src="../../../../public/heroes/shadow-waltz.jpg" alt>
+          <img class="skill_video_img" src="../../../../public/heroes_lhh/shadow-waltz.jpg" alt>
         </div>
         <div class="skill_border">
-          <img src="../../../../public/heroes/Fcarrion-swarm.png" alt>
+          <img src="../../../../public/heroes_lhh/Fcarrion-swarm.png" alt>
         </div>
         <div class="skill_border_dtl skill_three">
           <p>暗影华尔兹</p>
@@ -98,11 +98,11 @@
     <!-- 探索更多英雄部分 -->
     <div class="search_heroes">
       <h2 class="sec_h2">探索更多英雄技能</h2>
-      <img src="../../../../public/heroes/border_line.png" alt>
+      <img src="../../../../public/heroes_lhh/border_line.png" alt>
       <div class="sec_part">
         <div v-for="(item,i) of 4" :key="i">
           <div class="hero_video_box">
-            <img src="../../../../public/heroes/bust.jpg" alt="">
+            <img src="../../../../public/heroes_lhh/bust.jpg" alt="">
           </div>
           <h3 class="ser_her_title">凯斯</h3>
           <div class="ser_her_dtl_icon"></div><span class="ser_her_dtl">臭名昭著的罪犯</span>
@@ -165,7 +165,7 @@ export default {};
 .div_item .icon_role {
   width: 200px;
   height: 200px;
-  background: url("../../../../public/heroes/role-icons.png");
+  background: url("../../../../public/heroes_lhh/role-icons.png");
   margin: auto;
 }
 .div_item h3 {
@@ -178,7 +178,7 @@ export default {};
 .div_item .div_img_img {
   width: 116px;
   height: 135px;
-  background: url("../../../../public/heroes/Fability-icon-frame.png");
+  background: url("../../../../public/heroes_lhh/Fability-icon-frame.png");
   background-size: 116px 135px;
 }
 .div_item .div_img_img img {
@@ -249,7 +249,7 @@ export default {};
   box-sizing: border-box;
   position: absolute;
   top: 146px;
-  background-image: url("../../../../public/heroes/Fability-icon-frame.png");
+  background-image: url("../../../../public/heroes_lhh/Fability-icon-frame.png");
   background-size: 100%;
   left: 130px;
 }
@@ -298,6 +298,6 @@ export default {};
   height: 28px; line-height: 28px; display: inline-block; margin-left: 3px;
 }
 .search_heroes .ser_her_dtl_icon{
-  width: 30px; height: 30px; background:url('../../../../public/icon.png') no-repeat; display: inline-block; vertical-align: middle;
+  width: 30px; height: 30px; background:url('../../../../public/heroes_lhh/icon.png') no-repeat; display: inline-block; vertical-align: middle;
 }
 </style>
