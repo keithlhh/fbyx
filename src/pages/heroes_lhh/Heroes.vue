@@ -30,7 +30,7 @@
           <h3 class="search_h3 my_last_h3">游戏:</h3>
           <a
             href="#"
-            title="魔兽"
+            :title="game_type[index]"
             v-for="(item,index) of classObj_game"
             :key="index"
             @click="checkGame(index)"
@@ -46,15 +46,15 @@
     <!-- 英雄部分 -->
     <router-link to="/details">
       <div class="heroes_list">
-        <div class="heroes_list_item" v-for="(item,i) of classObj_hero" :key="i">
+        <div class="heroes_list_item" v-for="(item,i) of herObj" :key="i">
           <a href="#">
             <div class="hero_list_box">
-              <img src="../../../public/heroes_lhh/1.jpg" alt>
+              <img :src="item.img_url" alt>
             </div>
-            <h4 class="heroes_name">奥菲娅</h4>
+            <h4 class="heroes_name">{{item.name}}</h4>
             <div class="hero_heading">
               <span class="hero_icon"></span>
-              <i>乌鸦庭继承人</i>
+              <i>{{item.tital}}</i>
             </div>
             <div class="hover_border"></div>
           </a>
@@ -73,6 +73,13 @@ export default {
       /**
       根据classObj_hero的true或false来显示或隐藏
     */
+      heroesInfo:{
+        warrior:[],
+        assassin:[],
+        support:[],
+        specialist:[]
+      },/**axios请求的英雄信息 */
+      herObj:[],
       classObj_hero: {
         warrior: false,
         assassin: false,
@@ -86,17 +93,43 @@ export default {
         retro: false,
         overwatch: false
       },
-      hero_type: ["战斗型", "刺杀型", "辅助型", "专业型"],
-      game_type: ["魔兽", "星际称霸", "暗黑破坏神", "复古", "守望先锋"]
+      hero_type: {warrior:"战斗型",assassin:"刺杀型",support:"辅助型",specialist:"专业型"},
+      game_type: {warcraft:"魔兽", starcraft:"星际称霸", diablo:"暗黑破坏神", retro:"复古", overwatch:"守望先锋"}
     };
   },
   methods: {
     checkHeroes(index) {
-      console.log(this.classObj_hero[index]);
       this.classObj_hero[index] = !this.classObj_hero[index];
+      if(this.classObj_hero[index]){ 
+        var url="http://127.0.0.1:3000/heroes?role="+index;
+        this.axios.get(url).then((res)=>{
+          this.heroesInfo[index]=res.data;
+        })
+      }else{
+        this.heroesInfo[index]=[]
+      }
+      this.herObj=[];
+      console.log(this.heroesInfo)
+      for(var key in this.heroesInfo){
+        console.log(this.heroesInfo.warrior)
+        this.herObj=this.herObj.concat(this.heroesInfo[key])
+      }
     },
     checkGame(index){
+      
       this.classObj_game[index] = !this.classObj_game[index];
+      if(this.classObj_game[index]){
+        var url="http://127.0.0.1:3000/heroes?role="+index;
+        this.axios.get(url).then((res)=>{
+          this.heroesInfo[index]=res.data;
+        })
+      }else{
+         this.heroesInfo[index]=[];
+      }
+      this.herObj=[];
+      for(var key in this.heroesInfo){
+        this.herObj=this.herObj.concat(this.heroesInfo[key])
+      }
     }
   }
 };
@@ -284,11 +317,11 @@ html {
 }
 .hero_heading .hero_icon {
   display: inline-block;
-  width: 25px;
-  height: 25px;
-  background: #fff;
-  vertical-align: middle;
-  background-image: url(/img/icon.b7283fad.png)
+  width: 30px;
+  height: 30px;
+  vertical-align: top;
+  background-image: url(/img/icon.b7283fad.png);
+  background-position: -40px -140px;
 }
 .heroes_list_item a {
   text-decoration: none;
