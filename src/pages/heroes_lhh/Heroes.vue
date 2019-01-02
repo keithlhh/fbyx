@@ -44,7 +44,7 @@
             <div class="hero_list_box">
               <img src="../../../public/heroes_lhh/1.jpg" alt>
             </div>
-            <h4>奥菲娅</h4>
+            <h4 class="heroes_name">奥菲娅</h4>
             <div class="hero_heading">
               <span class="hero_icon"></span>
               <i>乌鸦庭继承人</i>
@@ -74,7 +74,7 @@ html {
   margin: 0;
 }
 .my_header_search {
-  padding: 10px;
+  padding: 20px;
   width: 100%;
 }
 .fielter {
@@ -195,11 +195,11 @@ html {
 }
 /* 英雄列表 */
 .hero_list_box {
-  width: 206px;
-  height: 300px;
+  width: 190px;
+  height: 286px;
   padding: 5px;
   background: linear-gradient(#14324e, #43286b) repeat rgba(0, 0, 0, 0);
-  margin-top: 70px;
+  margin-top: 60px;
 }
 .hero_list_box img {
   width: 100%;
@@ -213,11 +213,27 @@ html {
   padding: 30px 0 0 0;
   position: relative;
 }
+.heroes_list_item .heroes_name {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  padding-left: 2px;
+  padding-top: 10px;
+  color: #fff;
+}
+.hero_heading .hero_icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  vertical-align: middle;
+  background-image: url(/img/icon.b7283fad.png)
+}
 .heroes_list_item a {
   text-decoration: none;
 }
 .heroes_list {
-  width: 80%;
+  width: 79%;
   height: 1000px;
   margin: 0 auto;
   display: flex;
@@ -228,12 +244,14 @@ html {
   width: 340px;
   height: 490px;
   top: -95px;
-  left: -62px;
+  left: -61px;
   z-index: 0;
   position: absolute;
   background-image: url("../../../public/heroes_lhh/hover-border.png");
+  background-size: 94% 95%;
   top: 0;
   opacity: 0;
+  transition: all 0.5s linear;
 }
 .hover_border:hover {
   opacity: 1;
