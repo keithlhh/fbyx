@@ -17,18 +17,25 @@
       <div class="fielter">
         <div class="my_type type">
           <h3 class="search_h3">类型:</h3>
-          <a href="#" title="战斗型"></a>
-          <a href="#" title="刺杀型"></a>
-          <a href="#" title="辅助型"></a>
-          <a href="#" title="专业型"></a>
+          <a
+            href="#"
+            :title="hero_type[index]"
+            v-for="(item,index) of classObj_hero"
+            :key="index"
+            @click="checkHeroes(index)"
+            :class="item?index:false"
+          ></a>
         </div>
         <div class="my_type game_icon">
           <h3 class="search_h3 my_last_h3">游戏:</h3>
-          <a href="#" title="魔兽"></a>
-          <a href="#" title="星际争霸"></a>
-          <a href="#" title="暗黑破坏神"></a>
-          <a href="#" title="复古"></a>
-          <a href="#" title="守望先锋"></a>
+          <a
+            href="#"
+            title="魔兽"
+            v-for="(item,index) of classObj_game"
+            :key="index"
+            @click="checkGame(index)"
+            :class="item?index:false"
+          ></a>
         </div>
         <div class="div_input">
           <input class="my_input" placeholder="搜索英雄…" type="text">
@@ -39,7 +46,7 @@
     <!-- 英雄部分 -->
     <router-link to="/details">
       <div class="heroes_list">
-        <div class="heroes_list_item" v-for="(item,i) of 15" :key="i">
+        <div class="heroes_list_item" v-for="(item,i) of classObj_hero" :key="i">
           <a href="#">
             <div class="hero_list_box">
               <img src="../../../public/heroes_lhh/1.jpg" alt>
@@ -62,9 +69,36 @@
 
 export default {
   data() {
-    return {};
+    return {
+      /**
+      根据classObj_hero的true或false来显示或隐藏
+    */
+      classObj_hero: {
+        warrior: false,
+        assassin: false,
+        support: false,
+        specialist: false
+      },
+      classObj_game: {
+        warcraft: false,
+        starcraft: false,
+        diablo: false,
+        retro: false,
+        overwatch: false
+      },
+      hero_type: ["战斗型", "刺杀型", "辅助型", "专业型"],
+      game_type: ["魔兽", "星际称霸", "暗黑破坏神", "复古", "守望先锋"]
+    };
   },
-  methods: {}
+  methods: {
+    checkHeroes(index) {
+      console.log(this.classObj_hero[index]);
+      this.classObj_hero[index] = !this.classObj_hero[index];
+    },
+    checkGame(index){
+      this.classObj_game[index] = !this.classObj_game[index];
+    }
+  }
 };
 </script>
 <style scoped>
@@ -120,6 +154,18 @@ html {
   background-repeat: no-repeat;
   float: left;
 }
+.warrior {
+  background-position: 0 -94px !important;
+}
+.assassin {
+  background-position: -36px -94px !important;
+}
+.support {
+  background-position: -72px -94px !important;
+}
+.specialist {
+  background-position: -108px -94px !important;
+}
 .type > a:nth-child(3) {
   background-position: -36px 0;
 }
@@ -129,14 +175,29 @@ html {
 .type > a:nth-child(5) {
   background-position: -108px 0;
 }
+.warcraft {
+  background-position: -155px -94px !important;
+}
+.starcraft {
+  background-position: -226px -94px !important;
+}
+.diablo {
+  background-position: -190px -94px !important;
+}
+.retro {
+  background-position: -263px -94px !important;
+}
+.overwatch {
+  background-position: -302px -96px !important;
+}
 .game_icon > a:nth-child(2) {
   background-position: -155px 0;
 }
 .game_icon > a:nth-child(3) {
-  background-position: -191px 0;
+  background-position: -226px 0;
 }
 .game_icon > a:nth-child(4) {
-  background-position: -227px 0;
+  background-position: -190px 0;
 }
 .game_icon > a:nth-child(5) {
   background-position: -263px 0;
