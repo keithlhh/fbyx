@@ -286,7 +286,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .page .active{
     background: linear-gradient(rgba(216,97,215,0.5),rgba(135,11,193,0.5)) repeat scroll 0 0 rgba(0,0,0,0);
     border: 1px solid #801090;

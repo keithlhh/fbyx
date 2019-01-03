@@ -16,8 +16,8 @@ axios.defaults.withCredentials = true;
 Vue.prototype.axios = axios;
 
 //3.引入vue-source
-import VueSource from 'vue-source'
-Vue.use(VueSource)
+// import VueSource from 'vue-source'
+// Vue.use(VueSource)
 
 
 Vue.config.productionTip = false
