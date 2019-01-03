@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './pages/home_xmx/Home'
+import Home from './pages/home_xmx/Home.vue'
 import Foruminfo from './pages/forum/Foruminfo.vue'
 import ForumList from './pages/forum/ForumList.vue'
 import PostForum from './pages/forum/PostForum.vue'
@@ -14,7 +14,8 @@ export default new Router({
   routes: [
     {
       path:'/',
-      redirect:'Home',
+      redirect:'home',
+      component:Home,
       children:[
         {
          path:'home',

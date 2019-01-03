@@ -171,12 +171,13 @@ export default {
   //搜索英雄
   watch: {
     seaVal() {
-      console.log(this.seaVal)
       if (this.seaVal != "" && this.seaVal != undefined) {
         var url = "http://127.0.0.1:3000/heroes/seaVal?search=" + this.seaVal;
         this.axios.get(url).then(res => {
-          console.log(res);
+          this.herObj=res.data;
         });
+      }else{
+        this.getAll();
       }
     }
   }
@@ -203,6 +204,7 @@ html {
   background-image: url("../../../public/heroes_lhh/bg.jpg");
   height: 100%;
   width: 100%;
+  background-attachment: fixed;
 }
 .game_icon {
   width: 300px;

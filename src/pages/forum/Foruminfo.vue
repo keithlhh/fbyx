@@ -26,7 +26,9 @@
                   <span class="point" v-if="pointN == true">...</span>
                   <span v-bind:class="[{active : page == currentPage},{point : page == '...'}]"
                         v-for="(page, index) in pageArr"
-                        @click="goTo(page)">{{page}}</span>
+                        @click="goTo(page)"
+                        :key="index"
+                        >{{page}}</span>
                   <span class="point" v-if="pointL == true">...</span>
                   <span @click="last" v-if="lastPage == true"
                         v-bind:class="{active : pageCount == currentPage}">{{pageCount}}</span>
@@ -108,7 +110,8 @@
                       <span class="point" v-if="pointN == true">...</span>
                       <span v-bind:class="[{active : page == currentPage},{point : page == '...'}]"
                             v-for="(page, index) in pageArr"
-                            @click="goTo(page)">{{page}}</span>
+                            @click="goTo(page)"
+                            :key="index">{{page}}</span>
                       <span class="point" v-if="pointL == true">...</span>
                       <span @click="last" v-if="lastPage == true"
                             v-bind:class="{active : pageCount == currentPage}">{{pageCount}}</span>
@@ -524,7 +527,7 @@
     overflow: hidden;
     color: #34ffff;
     background-image: -webkit-linear-gradient(#ffffff,#34ffff);
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     padding: 0 10px;
