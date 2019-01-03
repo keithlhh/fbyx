@@ -62,11 +62,12 @@
   </div>
 </template>
 <script>
-//import detailsSkill from '@/pages/heroes_lhh/components/details_skill.vue'
+//引入details-skill组件
+import detailsSkill from '@/pages/heroes_lhh/components/details_skill.vue'
 export default {
-  // comments:{
-  //   detailsSkill
-  // },
+   components:{
+     detailsSkill
+   },
   data() {
     return {};
   }
