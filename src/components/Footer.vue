@@ -180,7 +180,7 @@ export default {
 #footer.heroes-footer {
     background:#11041e url("../../public/footer/tmbj.png") 50% 0 repeat-x;
     height: 502px;
-    margin-top: -502px;
+    margin-top: -432px;
 }
 #footer {
     margin: 0;

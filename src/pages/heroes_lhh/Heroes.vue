@@ -38,7 +38,7 @@
           ></a>
         </div>
         <div class="div_input">
-          <input class="my_input" placeholder="搜索英雄…" type="text">
+          <input class="my_input" placeholder="搜索英雄…" type="text" v-model="seaVal">
           <a href="#" class="search_icon"></a>
         </div>
       </div>
@@ -53,8 +53,8 @@
             </div>
             <h4 class="heroes_name">{{item.name}}</h4>
             <div class="hero_heading">
-              <span class="hero_icon"></span>
-              <i>{{item.tital}}</i>
+              <span class="hero_icon" :class="item.role"></span>
+              <i>{{item.title}}</i>
             </div>
             <div class="hover_border"></div>
           </a>
@@ -72,14 +72,14 @@ export default {
     return {
       /**
       根据classObj_hero的true或false来显示或隐藏
-    */
-      heroesInfo:{
-        warrior:[],
-        assassin:[],
-        support:[],
-        specialist:[]
-      },/**axios请求的英雄信息 */
-      herObj:[],
+    */ seaVal: "",
+      heroesInfo: {
+        warrior: [],
+        assassin: [],
+        support: [],
+        specialist: []
+      } /**axios请求的英雄信息 */,
+      herObj: [],
       classObj_hero: {
         warrior: false,
         assassin: false,
@@ -93,42 +93,90 @@ export default {
         retro: false,
         overwatch: false
       },
-      hero_type: {warrior:"战斗型",assassin:"刺杀型",support:"辅助型",specialist:"专业型"},
-      game_type: {warcraft:"魔兽", starcraft:"星际称霸", diablo:"暗黑破坏神", retro:"复古", overwatch:"守望先锋"}
+      hero_type: {
+        warrior: "战斗型",
+        assassin: "刺杀型",
+        support: "辅助型",
+        specialist: "专业型"
+      },
+      game_type: {
+        warcraft: "魔兽",
+        starcraft: "星际称霸",
+        diablo: "暗黑破坏神",
+        retro: "复古",
+        overwatch: "守望先锋"
+      }
     };
   },
   methods: {
+    /**
+     * 类型选择
+     */
     checkHeroes(index) {
       this.classObj_hero[index] = !this.classObj_hero[index];
-      if(this.classObj_hero[index]){ 
-        var url="http://127.0.0.1:3000/heroes?role="+index;
-        this.axios.get(url).then((res)=>{
-          this.heroesInfo[index]=res.data;
-        })
-      }else{
-        this.heroesInfo[index]=[]
+      if (this.classObj_hero[index]) {
+        var url = "http://127.0.0.1:3000/heroes?role=" + index;
+        this.axios.get(url).then(res => {
+          this.heroesInfo[index] = res.data;
+          this.getData();
+        });
+      } else {
+        this.heroesInfo[index] = [];
       }
-      this.herObj=[];
-      console.log(this.heroesInfo)
-      for(var key in this.heroesInfo){
-        console.log(this.heroesInfo.warrior)
-        this.herObj=this.herObj.concat(this.heroesInfo[key])
+      this.getData();
+    },
+    /**
+     * 游戏选择
+     */
+    checkGame(index) {
+      this.classObj_game[index] = !this.classObj_game[index];
+      if (this.classObj_game[index]) {
+        var url = "http://127.0.0.1:3000/heroes?role=" + index;
+        this.axios.get(url).then(res => {
+          this.heroesInfo[index] = res.data;
+        });
+      } else {
+        this.heroesInfo[index] = [];
+      }
+      this.herObj = [];
+      for (var key in this.heroesInfo) {
+        this.herObj = this.herObj.concat(this.heroesInfo[key]);
       }
     },
-    checkGame(index){
-      
-      this.classObj_game[index] = !this.classObj_game[index];
-      if(this.classObj_game[index]){
-        var url="http://127.0.0.1:3000/heroes?role="+index;
-        this.axios.get(url).then((res)=>{
-          this.heroesInfo[index]=res.data;
-        })
-      }else{
-         this.heroesInfo[index]=[];
+    getAll() {
+      var url = "http://127.0.0.1:3000/heroes/allheroes";
+      this.axios.get(url).then(res => {
+        this.herObj = res.data;
+      });
+    },
+    getData() {
+      this.herObj = [];
+      for (var key in this.heroesInfo) {
+        this.herObj = this.herObj.concat(this.heroesInfo[key]);
       }
-      this.herObj=[];
-      for(var key in this.heroesInfo){
-        this.herObj=this.herObj.concat(this.heroesInfo[key])
+      if (
+        !this.classObj_hero.warrior &&
+        !this.classObj_hero.assassin &&
+        !this.classObj_hero.support &&
+        !this.classObj_hero.specialist
+      ) {
+        this.getAll();
+      }
+    }
+  },
+  created() {
+    //初始化加载全部英雄
+    this.getAll();
+  },
+  //搜索英雄
+  watch: {
+    seaVal() {
+      console.log(this.seaVal)
+      if (this.seaVal != "" && this.seaVal != undefined) {
+        var url = "http://127.0.0.1:3000/heroes/seaVal?search=" + this.seaVal;
+        this.axios.get(url).then(res => {
+          console.log(res);
+        });
       }
     }
   }
@@ -149,10 +197,11 @@ html {
   height: 50px;
   display: flex;
   position: relative;
+  z-index: 100;
 }
 .heroes {
   background-image: url("../../../public/heroes_lhh/bg.jpg");
-  height: 2000px;
+  height: 100%;
   width: 100%;
 }
 .game_icon {
@@ -319,16 +368,29 @@ html {
   display: inline-block;
   width: 30px;
   height: 30px;
-  vertical-align: top;
+  vertical-align: middle;
   background-image: url(/img/icon.b7283fad.png);
   background-position: -40px -140px;
+}
+/* 小图标背景位置 */
+.warrior {
+  background-position: 0px -94px !important;
+}
+.assassin {
+  background-position: -36px -94px !important;
+}
+.support {
+  background-position: -72px -94px !important;
+}
+.specialist {
+  background-position: -108px -94px !important;
 }
 .heroes_list_item a {
   text-decoration: none;
 }
 .heroes_list {
   width: 79%;
-  height: 1000px;
+  /* height: 1000px; */
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
